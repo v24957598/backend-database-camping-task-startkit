@@ -100,8 +100,8 @@ insert into "CREDIT_PURCHASE" (user_id, credit_package_id, purchased_credits, pr
     -- 3. 將用戶`Q太郎`新增為教練，並且年資設定為2年
 
 insert into "COACH" (user_id, experience_years) values 
--- ((select id from "USER" where email = 'lee2000@hexschooltest.io'), 2);
--- ((select id from "USER" where email = 'muscle@hexschooltest.io'), 2);
+((select id from "USER" where email = 'lee2000@hexschooltest.io'), 2),
+((select id from "USER" where email = 'muscle@hexschooltest.io'), 2),
 ((select id from "USER" where email = 'starplatinum@hexschooltest.io'), 2);
 
 -- 3-2. 新增：承1，為三名教練新增專長資料至 `COACH_LINK_SKILL` ，資料需求如下：
@@ -112,8 +112,8 @@ insert into "COACH" (user_id, experience_years) values
 -- 1. 所有教練都有 `重訓` 專長
 insert into "COACH_LINK_SKILL" (coach_id, skill_id) values 
 (
---   (select id from "COACH" where user_id = (select id from "USER" where email = 'lee2000@hexschooltest.io')),
---   (select id from "COACH" where user_id = (select id from "USER" where email = 'muscle@hexschooltest.io')),
+  (select id from "COACH" where user_id = (select id from "USER" where email = 'lee2000@hexschooltest.io')),
+  (select id from "COACH" where user_id = (select id from "USER" where email = 'muscle@hexschooltest.io')),
   (select id from "COACH" where user_id = (select id from "USER" where email = 'starplatinum@hexschooltest.io')),
   (select id from "SKILL" where name = '重訓')
 );
@@ -179,6 +179,15 @@ delete from "SKILL" where name = '空中瑜伽';
     -- 6. 最大授課人數`max_participants` 設定為10
     -- 7. 授課連結設定`meeting_url`為 https://test-meeting.test.io
 
+insert into "COURSE" (user_id, skill_id, name, start_at, end_at, max_participants, meeting_url) values
+((select id from "USER" where email = 'lee2000@hexschooltest.io'),
+  (select id from "SKILL" where name = '重訓'),
+  '重訓基礎課',
+  '2024-11-25 14:00:00',
+  '2024-11-25 16:00:00',
+  10,
+  'https://test-meeting.test.io'
+);
 
 -- Actions
 
