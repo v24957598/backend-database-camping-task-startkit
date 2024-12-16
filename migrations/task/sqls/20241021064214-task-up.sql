@@ -190,6 +190,7 @@ insert into "COURSE" (user_id, skill_id, name, start_at, end_at, max_participant
   'https://test-meeting.test.io'
 );
 
+-- Actions
 
 -- ████████  █████   █    █████ 
 --   █ █   ██    █  █     █     
